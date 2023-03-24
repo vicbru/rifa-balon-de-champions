@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generador de números de boletos al azar</title>
+</head>
+<body>
+	<h1>Generador de números de boletos al azar</h1>
+	<form>
+		<label for="nombre">Nombre:</label>
+		<input type="text" id="nombre" name="nombre"><br><br>
+		<label for="correo">Correo electrónico:</label>
+		<input type="email" id="correo" name="correo"><br><br>
+		<button type="button" onclick="generarBoleto()">Generar número de boleto</button>
+	</form>
+	<p id="resultado"></p>
+	
+	<script>
+		let numerosGenerados = [];
+		
+		function generarBoleto() {
+			// Obtener la información del comprador
+			let nombre = document.getElementById("nombre").value;
+			let correo = document.getElementById("correo").value;
+			
+			// Generar un número de boleto al azar
+			let numeroBoleto = Math.floor(Math.random() * 1000) + 1;
+			while (numerosGenerados.includes(numeroBoleto)) {
+				numeroBoleto = Math.floor(Math.random() * 1000) + 1;
+			}
+			
+			// Almacenar el número de boleto en la lista de números generados
+			numerosGenerados.push(numeroBoleto);
+			
+			// Mostrar el número de boleto generado al comprador
+			document.getElementById("resultado").innerHTML = "Hola " + nombre + ", tu número de boleto es: " + numeroBoleto;
+		}
+	</script>
+</body>
+</html>
